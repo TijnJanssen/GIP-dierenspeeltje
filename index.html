@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hondenthema Knoppen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('https://images.pexels.com/photos/21393/pexels-photo.jpg') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 0;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(3px);
+            z-index: -1;
+        }
+        .container {
+            background: rgba(50, 50, 50, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            border: 3px solidrgb(13, 232, 13);
+            position: relative;
+            z-index: 1;
+        }
+        button {
+            background-color: rgb(13, 232, 13);
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color:rgb(13, 232, 13); /* Lichtere groen voor hover effect */
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            button {
+                font-size: 18px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+    <script>
+        let afstand = 3;
+        function updateAfstand(value) {
+            afstand += value;
+            if (afstand < 1) afstand = 1; // Minimale afstand 1 meter
+            if (afstand > 20) afstand = 20; // Maximale afstand 20 meter
+            document.getElementById("afstandDisplay").innerText = afstand + "m";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Kies een afstand</h1>
+        <h2 id="afstandDisplay">3m</h2>
+        <button onclick="updateAfstand(-1)">-</button>
+        <button onclick="updateAfstand(1)">+</button>
+    </div>
+</body>
+</html>
