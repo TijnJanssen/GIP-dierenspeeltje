@@ -35,7 +35,7 @@
             border-radius: 15px;
             width: 80%;
             max-width: 600px;
-            border: 3px solidrgb(13, 232, 13);
+            border: 3px solid rgb(13, 232, 13);
             position: relative;
             z-index: 1;
         }
@@ -51,7 +51,7 @@
             transition: background 0.3s;
         }
         button:hover {
-            background-color:rgb(13, 232, 13); /* Lichtere groen voor hover effect */
+            background-color: rgb(0, 200, 0);
         }
         @media (max-width: 600px) {
             .container {
@@ -66,11 +66,30 @@
     </style>
     <script>
         let afstand = 3;
+
         function updateAfstand(value) {
             afstand += value;
-            if (afstand < 1) afstand = 1; // Minimale afstand 1 meter
-            if (afstand > 20) afstand = 20; // Maximale afstand 20 meter
+            if (afstand < 1) afstand = 1;
+            if (afstand > 20) afstand = 20;
+
             document.getElementById("afstandDisplay").innerText = afstand + "m";
+            sendVoltageToArduino(afstand);
+        }
+
+        function berekenVoltage(afstand) {
+            // Stel dat 1 meter = 1V en 20 meter = 5V
+            return (afstand / 20) * 5; // Lineaire schaal tussen 1m en 20m
+        }
+
+        function sendVoltageToArduino(afstand) {
+            let voltage = berekenVoltage(afstand).toFixed(2);
+            console.log("Verzenden naar Arduino: Voltage = " + voltage + "V");
+
+            // Simuleer een HTTP-verzoek naar een Arduino-server
+            fetch("http://192.168.1.100/setVoltage?value=" + voltage) // Pas IP aan naar jouw Arduino
+                .then(response => response.text())
+                .then(data => console.log("Antwoord van Arduino:", data))
+                .catch(error => console.error("Fout bij verzenden:", error));
         }
     </script>
 </head>
