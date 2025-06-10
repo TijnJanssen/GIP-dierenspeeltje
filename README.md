@@ -3,7 +3,7 @@
 Motorbesturing met knop (Arduino)
 Dit project bestuurt twee DC-motoren met behulp van een knop. Wanneer de knop wordt ingedrukt, draaien beide motoren 5 seconden op volle snelheid en stoppen daarna.
 
-1 Benodigdheden
+# 1 Benodigdheden
   Arduino (bijv. Arduino Uno)
 
   2x DC-motoren
@@ -12,14 +12,14 @@ Dit project bestuurt twee DC-motoren met behulp van een knop. Wanneer de knop wo
 
   Bedrading en eventueel een breadboard
 
-2 Aansluitingen
+# 2 Aansluitingen
   Motor 1 aangesloten op pin 9 (PWM)
 
   Motor 2 aangesloten op pin 10 (PWM)
 
   Drukknop aangesloten op pin 2 (met interne pull-up weerstand ingeschakeld)
 
-3 Werking
+# 3 Werking
   De knop is verbonden met pin 2, ingesteld als input met interne pull-up weerstand.
 
   Zodra de knop ingedrukt wordt (pin 2 gaat LOW), starten beide motoren met maximale snelheid (PWM waarde 255).
